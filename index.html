@@ -72,7 +72,7 @@
 
 
     <h2>Testing</h2>
-    <p>Det finnes mye litteratur om testing, men det kan være en utfordring å finne noe, som umiddlebart passer i en konkret situasjon. Forskjellige mentale modeller har forskjellige navn på elementer i testing. Integrasjonstest, systemtest, enhetstest, regresjonstest osv. Begrepene er upresise og brukes i forsjellige kontekster med forskjellige meninger. Med andre ord, testing (og dermed systemutvikling) er i utgangspunktet en kreativ prosess. Men finnes den noen mønster, som vi kan dra nytte av?</p>
+    <p>Det finnes mye litteratur om testing, men det kan være en utfordring å finne noe, som umiddlebart passer i en konkret situasjon. Forskjellige mentale modeller har forskjellige navn på elementer i testing. Integrasjonstest, systemtest, enhetstest, regresjonstest osv. Begrepene er upresise og brukes i forskjellige kontekster med forskjellige meninger. Med andre ord, testing (og dermed systemutvikling) er i utgangspunktet en kreativ prosess. Men finnes det noen mønster, som vi kan dra nytte av?</p>
 
     <h3>Mønstre for testing</h3>
     <p>La oss se på noen grunnleggende spørsmål:</p>
@@ -83,7 +83,7 @@
       <li>Hvordan velger vi hvilke data vi skal teste?</li>
     </ul>
     <p>Hvorfor føles det annerledes å utføre test automatisk, enn det trykke noen knapper og se resultater på en skjerm? Når en utvikler "sjekker" intenst i brukergrensesnitt, og ting ikke fungerer som forventet, så øker stressnivået. Dette stressnivået kan ta fokuset bort fra testing. Et vanlig uttrykk er "vi har ikke tid å teste, bare publiser/deployer det". Uten automatiske tester, vil man ikke kunne oppdage nye feil man introduserer med ny kode. Med automatiske tester, kan utvikler i større grad selv velge sitt stressnivå.</p>
-    <p>Skal kjøring (bruker dette ordet som oversettels for den engelske "run") av tester påvirke hverandre? Ikke i det hele tatt. Hvordan å få det til? Designe tester så korte og raske som mulig. Og, tester skal ikke være avhengig av hverandre, dvs. de skal være ISOLERTE. Ligner dette kanskje på WBS (Work Breakdown Structure) eller det å lage avgrensninger, dvs. designe ditt system?</p>
+    <p>Skal kjøring (bruker dette ordet som oversettelse for den engelske "run") av tester påvirke hverandre? Ikke i det hele tatt. Hvordan å få det til? Designe tester så korte og raske som mulig. Og, tester skal ikke være avhengig av hverandre, dvs. de skal være ISOLERTE. Ligner dette kanskje på WBS (Work Breakdown Structure) eller det å lage avgrensninger, dvs. designe ditt system?</p>
     <p>Skriv en liste av tester før du starter. Hva ønsker vi å oppnå med programmering i dag? Hvilke refaktoreringer trenger vi å gjøre? Holde tester en endring unna tilfredsstilt/passert. </p>
     <p>Teste først, dvs. før du skriver kode som skal testes. Utviklerens mål er å drive funksjonalitet, men du må også tenke på design og du trenger å kontrollere avgrensninger (en. scope).</p>
     <p>"assert" (hevde, påstå) først ("assert" sannhet og likhet, eventuelt usannhet og ulikhet). Kan hjelpe å besvare spørsmål som, hvor skal funksjonalitet høre til, skal vi modifisere eksisterende funksjon, skrive en ny funksjon, lage en ny type/klasse? Hva skal vi kalle "ting"? Hvordan skal vi sjekke for rett svar? Hva er rett svar? Hvilke andre tester impliserer vår test?</p>
@@ -121,66 +121,9 @@
         </li>
     </ul></p>
 
-
-    <h2>SVG API</h2>
-      <pre>
-          <code>
-      &lt;svg viewBox="0 0 24 24"
-            aria-hidden="true"
-            focusable="false"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-            color="inherit"
-            &lt;path fill="none" d="M0 0 h24 v24 H0V0z"&gt;&lt;/path&gt;
-            &lt;path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"&gt;
-            &lt;/path&gt;
-      &lt;/svg&gt;</code>
-      </pre>
-
-      <h3>SVG path</h3>
-      <p> 6 typer av sti-kommandoer og tilsammen 20 kommandoer:
-        <ul>
-        <li>MoveTo: M, m</li>
-        <li>LineTo: L, l, H, h, V, v</li>
-        <li>Cubic Bézier Curve: C, c, S, s</li>
-        <li>Quadratic Bézier Curve: Q, q, T, t</li>
-        <li>Elliptical Arc Curve: A, a</li>
-        <li>ClosePath: Z, z</li>
-      </p>
-
-      <span>Før</span><span id="render-svg"></span><span>Etter</span>
-      <h2>Eksempeler</h2>
-      <h3>Eksempel på sti (tilnærming med streker)</h3>
-        <pre><code>
-          M13.828 10.172 Move the current point to the coordinate x,y
-          a4 4 0 00-5.656 0 (rx ry angle large-arc-flag sweep-flag dx dy)
-          l-4 4
-          a4 4 0 105.656 5.656
-          l1.102-1.101
-          m-.758-4.899
-          a4 4 0 005.656 0
-          l4-4
-          a4 4 0 00-5.656-5.656
-          l-1.1 1.1</code></pre>
-
-      <h3>Test-drevet eksempel</h3>
-      <p>Caset er å tegne sirkler av størrelsen R på en X enheter lang linje, hvor linjen representerer "fuzzy" verdier for et binært valg. Anta at en verdi, oppgitt av bruker (nå lagret i en database) er 74 og at linje kan være 100 enheter lang. Eksperimenter med tilgjengelige rammeverk (klynger med mange "objekter"/moduler/biblioteker). Finn kode for en case som funksjonen din skal generere (må adlyde reglene til rammeverket eller en hierarki med rammeverk). Gå en endring av gangen (for eksempel, lage et nytt element svg i DOM med document.createElementNS; hardkode ønsket resultat og sjekke outerHTML.)</p>
-
-      <pre>
-      <code>
-        &lt;svg version="1.1" width="300" height="50" viewBox="0 0 300 50"&gt;
-      &lt;line x1="10" x2="300" y1="20" y2="20" stroke="green" stroke-width="3"/&gt;
-      &lt;circle cx="65" cy="15" r="10" stroke="red" fill="transparent" stroke-width="2"/&gt;
-      &lt;/svg&gt;
-    </code></pre>
-    <p><span id="test-linje"></span></p>
-        <pre>
-        <code>
-          &lt;svg version="1.1" width="300" height="50" viewBox="0 0 300 50"&gt;
-  &lt;line x1="10" x2="300" y1="20" y2="20" stroke="green" stroke-width="3"/&gt;
-  &lt;circle id="uOne" cx="65" cy="15" r="10" stroke="red" fill="transparent" stroke-width="2"/&gt;
-  &lt;circle id="uTwo" cx="65" cy="25" r="10" stroke="purple" fill="transparent" stroke-width="2"/&gt;
-  &lt;/svg&gt;</code></pre>
+  <h3>Test-trekanten</h3>
+  <p>I utgangspunktet er dette en ønsket representasjon av mengde testing for i de forskjellige "kategoriene". Men i praksis blir triangelet ofte snudd opp ned mens kategoriene beholder samme rekkefølgen, dvs. at man gjør mest "intuitiv" UI-testing (vanligvis uten dokumentasjon) og dropper isolerte tester, som er relatert til egen system modell.</p>
+    
   <p><svg height="300" width="300" viewBox="0 0 300 300">
       <polygon points="140 20 270 270 10 270 140 20" stroke="gray" fill="transparent" stroke-width="2"/>
       <line x1="88" x2="192" y1="120" y2="120" stroke="gray" stroke-width="2"/>
@@ -193,82 +136,6 @@
 		    Sorry, your browser does not support inline SVG.
 	  </svg></p>
   </div>
-  <script>
-    function renderHwrOutput(node) {
-      const hwrSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      const hwrPath = document.createElementNS('http://www.w3.org/2000/svg','path');
-      const hwrLine = document.createElementNS('http://www.w3.org/2000/svg','line');
-      const skalFaa = '<svg version="1.1" width="300" height="50" viewBox="0 0 300 50"><line x1="10" x2="300" y1="20" y2="20" stroke="green" stroke-width="3"></line><circle cx="65" cy="15" r="10" stroke="red" fill="transparent" stroke-width="2"></circle></svg>'
-
-      hwrSvg.setAttribute('fill', 'none');
-      hwrSvg.setAttribute('viewBox', '0 0 24 24');
-      hwrSvg.setAttribute('height', '24');
-      hwrSvg.setAttribute('width', '24');
-      hwrSvg.setAttribute('stroke', 'orange');
-      hwrSvg.classList.add('post-icon');
-
-      hwrPath.setAttribute(
-        'd',
-          'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
-      );
-      hwrPath.setAttribute('stroke-linecap', 'round');
-      hwrPath.setAttribute('stroke-linejoin', 'round');
-      hwrPath.setAttribute('stroke-width', '2');
-
-      /*
-      <rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/>
-        <rect x="60" y="10" rx="10" ry="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/>
-
-        <svg version="1.1" width="300" height="50" viewBox="0 0 300 50">
-  <line x1="10" x2="300" y1="20" y2="20" stroke="green" stroke-width="3"/>
-  <circle id="uOne" cx="65" cy="15" r="10" stroke="red" fill="transparent" stroke-width="2"/>
-  <circle id="uTwo" cx="65" cy="25" r="10" stroke="purple" fill="transparent" stroke-width="2"/>
-  </svg>
-      */
-      hwrLine.setAttribute('x1', '10');
-      hwrLine.setAttribute('x2', '300');
-      hwrLine.setAttribute('y1', '20');
-      hwrLine.setAttribute('y2', '20');
-      hwrLine.setAttribute('stoke', 'green');
-      hwrLine.setAttribute('stroke-width', '3');
-
-      //hwrSvg.appendChild(hwrPath);
-      hwrSvg.appendChild(hwrLine);
-      console.log(hwrSvg.innerHTML);
-      produsertHTML = hwrSvg.outerHTML;
-      //console.log(hwrSvg.outerHTML);
-      console.assert(hwrSvg.outerHTML === skalFaa, { produsertHTML, skalFaa } );
-
-      return node.appendChild(hwrSvg);
-    }
-    //renderHwrOutput(document.getElementById('render-svg'));
-    renderHwrOutput(document.getElementById('test-linje'));
-
-    // kan brukes i testing: "trykke" programmatisk for å "hente" data
-    // må legges inn i testfunksjon testHentMedlemsvanerOppsummering
-    // som tester funnksjon hentMedlemsvanerOppsummering(...)
-    // parametre må peke på en database og en eller flere databasepost(-er)
-    // databaseoppføringer
-    function buttonclick(){
-        var pagebutton= document.getElementById("foobutton");
-        pagebutton.click();
-     }
-
-//<a href="#" onmouseover="buttonclick()">Mus over for å "klikke" foobutton</a>
-//<button id="foobutton" onclick="alert('Ikke meningen!');">Ikke klikk</button>
-
-  </script>
+  
 </body>
 </html>
-<!--
-https://marian-caikovski.medium.com/innerhtml-vs-appendchild-e74c763846df
-https://webdesign.tutsplus.com/tutorials/svg-viewport-and-viewbox-for-beginners--cms-30844
-https://dev.to/tqbit/how-to-create-svg-elements-with-javascript-4mmp
-https://designmodo.com/test-javascript-unit/
-https://codepen.io/jodoron/pen/oNbMWRz (eksempel)
-
-{
-    "produsertHTML": "<svg fill=\"none\" viewBox=\"0 0 24 24\" height=\"24\" width=\"24\" stroke=\"orange\" class=\"post-icon\"><line x1=\"10\" x2=\"300\" y1=\"20\" y2=\"20\" stoke=\"green\" stroke-width=\"3\"></line></svg>",
-    "skalFaa": "<svg version=\"1.1\" width=\"300\" height=\"50\" viewBox=\"0 0 300 50\"><line x1=\"10\" x2=\"300\" y1=\"20\" y2=\"20\" stroke=\"green\" stroke-width=\"3\"></line><circle cx=\"65\" cy=\"15\" r=\"10\" stroke=\"red\" fill=\"transparent\" stroke-width=\"2\"></circle></svg>"
-}
-  -->
